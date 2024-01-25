@@ -2,9 +2,11 @@ package com.rapiddweller.codechallenges.interpreter.service;
 
 import com.rapiddweller.codechallenges.interpreter.Interpreter;
 import jdk.jshell.JShell;
+import jdk.jshell.SnippetEvent;
 import org.springframework.stereotype.Service;
 
 import javax.script.ScriptException;
+import java.util.List;
 
 @Service
 public class InterpreterService {
@@ -20,6 +22,9 @@ public class InterpreterService {
         if (functionCode.getMethod() == null){
             functionCode.setMethod(SPACE);
         }
+        if (functionCode.getBody() == null) {
+            functionCode.setBody(SPACE);
+        }
         jShell.eval(functionCode.getMethod());
         jShell.eval(functionCode.getBody());
     }
@@ -33,22 +38,44 @@ public class InterpreterService {
                 builder.append(jShell.varValue(varSnippet));
             }
         });
+
         return builder;
     }
 
-    public String contextSubmissionAndExecution(Interpreter code) throws Exception {
+    public void contextSubmission(Interpreter code) throws Exception {
         try {
             submitFunction(code);
-          return executeScript(code).toString();
         } catch (ScriptException e) {
             throw new ArithmeticException("Error in arithmetic expression: " + e.getMessage());
         } catch (Exception e) {
             throw new Exception("Error in arithmetic expression: " + e.getMessage());
         }
     }
-
+    public String contextExecution(Interpreter code) throws Exception {
+        try {
+            jShell.eval(code.getBody());
+            return executeScript(code).toString();
+        } catch (ScriptException e) {
+            throw new ArithmeticException("Error in arithmetic expression: " + e.getMessage());
+        } catch (Exception e) {
+            throw new Exception("Error in arithmetic expression: " + e.getMessage());
+        }
+    }
     public String complexOperation(Interpreter code) {
+        jShell.eval("import java.util.*");
+        List<SnippetEvent> event=   jShell.eval(code.getBody());
 
         return null;
+    }
+
+    public String simpleArithmetic(Interpreter code) throws Exception {
+        try {
+            submitFunction(code);
+            return contextExecution(code);
+        } catch (ScriptException e) {
+            throw new ArithmeticException("Error in arithmetic expression: " + e.getMessage());
+        } catch (Exception e) {
+            throw new Exception("Error in arithmetic expression: " + e.getMessage());
+        }
     }
 }
