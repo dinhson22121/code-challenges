@@ -12,7 +12,7 @@ public class TranslationService {
    public String getTranslatedText(TranslationRequest io) throws Exception {
 
         // Replace "YOUR_API_KEY" with your actual Google Cloud API key
-        Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyAM_Oy-lA_Noyte5Q1Oip9-UBs5G4XylXw").build().getService();
+        Translate translate = TranslateOptions.newBuilder().setApiKey("").build().getService();
 
         Translation translation = translate.translate(io.getText(), Translate.TranslateOption.sourceLanguage(io.getSourceLanguage()), Translate.TranslateOption.targetLanguage(io.getTargetLanguage()));
 
