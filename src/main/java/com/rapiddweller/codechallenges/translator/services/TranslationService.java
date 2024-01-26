@@ -1,4 +1,4 @@
-package com.rapiddweller.codechallenges.translator;
+package com.rapiddweller.codechallenges.translator.services;
 
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;

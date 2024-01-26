@@ -1,5 +1,6 @@
-package com.rapiddweller.codechallenges.translator;
+package com.rapiddweller.codechallenges.translator.controllers;
 
+import com.rapiddweller.codechallenges.translator.services.TranslationService;
 import com.rapiddweller.codechallenges.translator.io.TranslationRequest;
 import com.rapiddweller.codechallenges.translator.io.TranslationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
