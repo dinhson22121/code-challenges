@@ -1,4 +1,4 @@
-package com.rapiddweller.codechallenges.interpreter;
+package com.rapiddweller.codechallenges.interpreter.io;
 
 public class Interpreter {
     private String method;

@@ -1,4 +1,4 @@
-package com.rapiddweller.codechallenges.interpreter.response;
+package com.rapiddweller.codechallenges.interpreter.io;
 
 public class Response {
     private String result;
